@@ -12,6 +12,9 @@ var port = (url[5]||null);
 var host = (url[4]||null);
 var storage = process.env.DATABASE_STORAGE;
 
+console.log("database_url=" + process.env.DATABASE_URL);
+console.log("storage=" + storage);
+
 //Cargar Modelo ORM
 var Sequelize = require('sequelize');
 
@@ -26,7 +29,7 @@ var sequelize = new Sequelize(DB_name, user, pwd,
 					  port: port,
 					  host: host,
 					  storage: storage, //solo SQLite (.env)
-					  omiNull: true  //solo Postgres
+					  omiNull: true,  //solo Postgres
 					}
 					  );
 
