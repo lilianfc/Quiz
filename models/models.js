@@ -26,6 +26,9 @@ var sequelize = new Sequelize(DB_name, user, pwd,
 					  port: port,
 					  host: host,
 					  storage: storage, //solo SQLite (.env)
+					  dialectOptions: {
+						ssl: true
+					  },
 					  omiNull: true  //solo Postgres
 					}
 					  );
