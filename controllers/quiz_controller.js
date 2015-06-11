@@ -16,21 +16,26 @@ exports.load = function(req, res, next, quizId) {
 exports.index = function(req, res) {
 	models.Quiz.findAll().then(
 	  function(quizes) {
-		res.remder('quizes/index.ejs', { quizes: quizes });
+		res.render('quizes/index', { quizes: quizes });
 	  }
 	).catch(function(error) { next(error);})
 };
 
 // GET /quizes/:id
 exports.show = function(req, res) {
-	res.render('quizes/show', { quiz: req.quiz } );
+	//models.Quiz.find(req.params.quizId).then(
+	  //function(quiz) {
+		res.render('quizes/show', { quiz: req.quiz });
+	  //})
 };
 
 // GET /quizes/:id/answer
 exports.answer = function(req, res) {
-	var resultado = 'Incorrecto';
-	if (req.query.respuesta === req.quiz.respuesta) {
-		resultado = 'Correcto';
-	}
+	//models.Quiz.find(req.params.quizId).then(function(quiz) {
+		var resultado = 'Incorrecto';
+		if (req.query.respuesta === req.quiz.respuesta) {
+			resultado = 'Correcto';
+		}
 	res.render('quizes/answer', { quiz: req.quiz, respuesta: resultado });
+	//})
 };
