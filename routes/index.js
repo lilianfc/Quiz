@@ -15,8 +15,6 @@ router.param('quizId', quizController.load); // autoload :quizId
 router.get('/quizes', quizController.index);
 router.get('/quizes/:quizId(\\d+)', quizController.show);
 router.get('/quizes/:quizId(\\d+)/answer', quizController.answer);
-router.get('/author', function(req, res) {
-	res.render('author');
-})
+router.get('/author', quizController.author);
 
 module.exports = router;
