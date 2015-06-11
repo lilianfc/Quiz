@@ -2,7 +2,7 @@ var path = require('path');
 
 //Postgres DATABASE_URL = postgres://
 //SQLite  DATABASE_URL = sqlite://:@:/
-var url = process.env.DATABASE_URL.match(/(.*)\:\/\/(.*?)\:(.*)\/(.*)/);
+var url = process.env.DATABASE_URL.match(/(.*)\:\/\/(.*?)\:(.*)@(.*)\:(.*)\/(.*)/);
 var DB_name = (url[6]||null);
 var user = (url[2]||null);
 var pwd = (url[3]||null);
@@ -39,14 +39,18 @@ var Quiz = sequelize.import(path.join(__dirname, 'quiz'));
 exports.Quiz = Quiz; //exportar definicion tabla Quiz
 
 //sequelize.sync() crea e inicializa tabla preguntas
-sequelize.sync().success(function() {
+sequelize.sync().then(function() {
 	//success(..) ejecuta manejador una vez creada la tabla
-	Quiz.count().success(function(count) {
+	//then(..) ejecuta manejador una vez creada la tabla
+	Quiz.count().then(function(count) {
 		if (count === 0) {  //se inicializa tabla si está vacia
 			Quiz.create({ pregunta: 'Capital de Italia',
-						  respuesta: 'Roma'
-						})
-			.success(function() {
+			 	      respuesta: 'Roma'
+					});
+			Quiz.create({ pregunta: 'Capital de Portugal',
+				      respuesta: 'Lisboa'
+					})
+			.then(function() {
 				console.log('Base de datos inicializada')
 			});
 		};
