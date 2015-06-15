@@ -1,6 +1,8 @@
 
 <table>
 <% var i; for (i=0; i < searches.length; i++) { %>
- <tr><td><a href="/quizes/<%= searches[i].id %>"><%= searches[i].pregunta %></a></td></tr>
+ <tr>
+ 	<td><a href="/quizes/<%= searches[i].id %>"><%= searches[i].pregunta %></a></td>
+ </tr>
 <% } %>
 </table>

@@ -114,3 +114,12 @@ exports.destroy = function(req, res) {
 		res.redirect('/quizes');
 	}).catch(function(error) { next(error) });
 };
+
+// GET /quizes/temas
+exports.temas = function(req, res) {
+	models.Quiz.findAll({groupby: ["tema"]}).then(
+		function(quizes) {
+			res.render('quizes/temas', { quizes: quizes, errors: []});
+		}
+	).catch(function(error) { next(error)});
+}
