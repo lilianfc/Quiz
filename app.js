@@ -28,13 +28,23 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(partials());
 
 // Helpers dinamicos:
-app.use(function(req, res, next) {
+app.use(function(req, res, next) {        
     // guardar path en session.redir para despues de login
     if (!req.path.match(/\/login|\/logout/)) {
         req.session.redir = req.path;
     }
+
     // Hacer visible req.session en las vistas
     res.locals.session = req.session;
+    next();
+});
+
+// auto logout
+app.use(function(req, res, next) { 
+    if (req.session.cookie) {
+        req.session.cookie.expires = Date.now() + 120000;
+        req.session.cookie.maxAge = 120000;
+    }
     next();
 });
 

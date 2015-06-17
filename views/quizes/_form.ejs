@@ -1,9 +1,9 @@
 <% var temas = ["otro", "humanidades", "ocio", "ciencia", "tecnologia"]; %>
 
 <label for="preg" class="rem">Pregunta:</label>
-<input type="text" id="preg" name="quiz[pregunta]" value="<%= quiz.pregunta %>"/><p>
+<input type="text" id="preg" name="quiz[pregunta]" value="<%= quiz.pregunta %>"/> <p>
 <label for="resp" class="rem">Respuesta:</label>
-<input type="text" id="resp" name="quiz[respuesta]" value="<% quiz.respuesta %>"/><p>
+<input type="text" id="resp" name="quiz[respuesta]" value="<%= quiz.respuesta %>"/> <p>
  <select name="quiz[tema]">
  <% for (var i in temas) { %>
  		<%if (quiz.tema === temas[i]) {%>
