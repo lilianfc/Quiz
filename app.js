@@ -42,8 +42,8 @@ app.use(function(req, res, next) {
 // auto logout
 app.use(function(req, res, next) { 
     if (req.session.cookie) {
-        req.session.cookie.expires = Date.now() + 120000;
-        req.session.cookie.maxAge = 120000;
+        req.session.cookie.expires = Date.now() + 1200000;
+        req.session.cookie.maxAge = 1200000;
     }
     next();
 });
